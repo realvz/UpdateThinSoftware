@@ -239,7 +239,7 @@ def send_email():
     msg['From'] = '%s@iqor.com' % host_name
     #msg['To'] = 're.alvarez@iqor.com'
     s = smtplib.SMTP('exchange-relay.iqor.qor.com')
-    s.sendmail('h9489893842@iqor.com',  're.alvarez@iqor.com,john.schulze@iqor.com', msg.as_string())
+    s.sendmail('h9489893842@iqor.com',  ['re.alvarez@iqor.com','john.schulze@iqor.com'], msg.as_string())
 
 
 
