@@ -66,6 +66,18 @@ def copy_default_profile_file(filePath,destPath):
         return False
 
 
+def del_shell_vbs():
+    filePath = 'c:\\windows\\shell.vbs'
+    if os.path.exists(filePath):
+        try:
+            os.remove(filePath)
+        except:
+            print str(sys.exc_info()[0])
+            print('Error deleting Shell.vbs.')
+            return False
+    return True
+
+
 def deploy_default_dat():
     if windows_version() == 'XP':
         print('OS is XP')
@@ -319,6 +331,9 @@ def main():
 
     if update_imprivata_appliance_addr() <> 0:
          did_anything_fail = True
+
+    if not del_shell_vbs():
+        did_anything_fail = True
 
     if did_anything_fail:
         #Send an email with the log file
