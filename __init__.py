@@ -7,6 +7,7 @@ import logging
 import smtplib
 import shutil
 
+
 view_client_guids = (r'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{32F7C990-439B-4B2A-B472-A478D53D3F32}',
                      r'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{44823D81-BDE3-4BAD-99B2-A7730F50818D}',
                      r'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{F0069EF8-0A18-4B53-8D18-697594146D59}',
@@ -21,7 +22,6 @@ imprivata_guids = (r'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{E72D11
 #ViewClientGUIDKey1 = r'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{32F7C990-439B-4B2A-B472-A478D53D3F32}'
 #ViewClientGUIDKey2 = r'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{F0069EF8-0A18-4B53-8D18-697594146D59}'
 #ViewClientGUIDKey3 = r'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{44823D81-BDE3-4BAD-99B2-A7730F50818D}'
-
 
 DPGUIDKey =  r'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{EA01643E-1D8A-43F1-8C23-32E9253CD08A}'
 ImprivataInstallFile ='c:\\temp\\ImprivataAgent.msi'
@@ -77,6 +77,18 @@ def del_shell_vbs():
             return False
     return True
 
+
+def remove_localthinadmin_proxy():
+    localthinadmin_proxy = r'S-1-5-21-846111597-771599911-2147047313-1002\Software\Microsoft\Windows\CurrentVersion\Internet Settings'
+    try:
+        reg_key = OpenKey(HKEY_USERS,localthinadmin_proxy, 0, KEY_ALL_ACCESS)
+        SetValueEx(reg_key, "ProxyServer",0 ,REG_SZ,'')
+        SetValueEx(reg_key, "ProxyEnable",0 ,REG_DWORD,0)
+    except:
+        print('error removing proxy settings for localthinadmin.')
+        logging.error('error removing proxy settings for localthinadmin. '+ str(sys.exc_info()[0]))
+        return False
+    return True
 
 def deploy_default_dat():
     if windows_version() == 'XP':
@@ -333,6 +345,9 @@ def main():
          did_anything_fail = True
 
     if not del_shell_vbs():
+        did_anything_fail = True
+
+    if not remove_localthinadmin_proxy():
         did_anything_fail = True
 
     if did_anything_fail:
