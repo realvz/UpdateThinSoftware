@@ -321,9 +321,9 @@ def main():
 
     if view_upgrade_decision(view_client_version):
         if upgrade_view_client() == 0:
-             register_vmusb_sys()
-             logging.info('View client upgraded successfully.')
-             print('View client upgraded successfully.')
+            register_vmusb_sys()
+            logging.info('View client upgraded successfully.')
+            print('View client upgraded successfully.')
         else:
             print('Fail flag tripped')
             did_anything_fail = True
@@ -351,7 +351,7 @@ def main():
         did_anything_fail = True
 
     if did_anything_fail:
-        #Send an email with the log file
+        # Send an email with the log file
         send_email()
 
 
