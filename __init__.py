@@ -77,9 +77,17 @@ def del_shell_vbs():
             return False
     return True
 
+def get_localthinadmin_sid():
+    import wmi
+    hostname  = os.getenv('COMPUTERNAME')
+    c = wmi.WMI()
+    for user in c.Win32_userAccount(Domain=hostname,Name='localthinadmin'):
+        return user.SID
 
 def remove_localthinadmin_proxy():
-    localthinadmin_proxy = r'S-1-5-21-846111597-771599911-2147047313-1002\Software\Microsoft\Windows\CurrentVersion\Internet Settings'
+    localthinadmin_sid = get_localthinadmin_sid()
+    localthinadmin_proxy = r'{}\Software\Microsoft\Windows\CurrentVersion\Internet Settings'.format(localthinadmin_sid)
+
     try:
         reg_key = OpenKey(HKEY_USERS,localthinadmin_proxy, 0, KEY_ALL_ACCESS)
         SetValueEx(reg_key, "ProxyServer",0 ,REG_SZ,'')
