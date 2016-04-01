@@ -30,7 +30,7 @@ DefaultProfileData_W7 = 'c:\\temp\\NTUSER.DAT_W7'
 DefaultProfileData_XP = 'c:\\temp\\NTUSER.DAT_XP'
 LTAProfileData_W7 = 'c:\\temp\\NTUSER.DAT_W7_LTA'
 LTAProfileData_XP = 'c:\\temp\\NTUSER.DAT_XP_LTA'
-AppVersion = '0.9.0'
+AppVersion = '0.9.3'
 LogFilePath = 'C:\\TEMP\\ThinClientUpdater.log'
 
 FoundImprivataGUID = ''
@@ -157,7 +157,7 @@ def view_upgrade_decision(view_version):
     elif view_version == '0':
         return False
     else:
-        print(u'View Client version unknown. {0:s}'.format(view_version))
+        print(u'View Client version unknown. {}'.format(view_version))
         return False
 
 
@@ -182,7 +182,7 @@ def upgrade_view_client():
             logging.error('Install file is invalid.')
     else:
         print('View Client install file missing.')
-        logging.error('Could not locate View Client install file. ' + str(sys.exc_info()[0]))
+        logging.error('Could not locate View Client install file. {0}'.format(str(sys.exc_info()[0])))
         return -1
     return process.returncode
 
