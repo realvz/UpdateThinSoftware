@@ -168,6 +168,12 @@ def upgrade_view_client():
     else:
         view_client_installer = ViewClientInstallFile34
 
+    # We are skipping View upgrade on all Windows 7 devices for now
+    if windows_version() != 'XP':
+        print('View Client install is being skipped on t520 thin clients')
+        logging.info("View Client install is being skipped on t520 thin clients.")
+        return 0
+
     if os.path.exists(view_client_installer):
         print('%s  /S /V /qn ADDLOCAL=ALL REBOOT=Reallysuppresss' % view_client_installer)
         logging.info('%s  /S /V /qn ADDLOCAL=ALL REBOOT=Reallysuppresss' % view_client_installer)
