@@ -288,7 +288,7 @@ def send_email():
     msg['From'] = '%s@iqor.com' % host_name
     # msg['To'] = 're.alvarez@iqor.com'
     s = smtplib.SMTP('exchange-relay.iqor.qor.com')
-    s.sendmail('h9489893842@iqor.com', ['re.alvarez@iqor.com', 'john.schulze@iqor.com'], msg.as_string())
+    s.sendmail('h9489893842@iqor.com', ['re.alvarez@iqor.com', 'john.schulze@iqor.com','qdi$imaging@iqor.com'], msg.as_string())
 
 
 def main():
@@ -373,8 +373,9 @@ def main():
     if hide_view_shade() <> 0:
         did_anything_fail = True
 
-    if update_imprivata_appliance_addr() <> 0:
-        did_anything_fail = True
+    if not is_thin_DP():
+        if update_imprivata_appliance_addr() <> 0:
+            did_anything_fail = True
 
     if not del_shell_vbs():
         did_anything_fail = True
