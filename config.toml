@@ -1,5 +1,6 @@
 baseURL = "http://realvz.github.io/UpdateThinSoftware/public/"
 languageCode = "en-us"
+publishDir = "docs"
 title = "My New Hugo Site"
 theme = "reveal-hugo"
 
