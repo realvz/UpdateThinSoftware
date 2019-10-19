@@ -1,4 +1,4 @@
-baseURL = "http://realvz.github.io/UpdateThinSoftware/public/"
+baseURL = "http://realvz.github.io/UpdateThinSoftware/"
 languageCode = "en-us"
 publishDir = "docs"
 title = "My New Hugo Site"
