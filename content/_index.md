@@ -16,4 +16,3 @@ outputs = ["Reveal"]
 
 In this presentation we will learn how to troubleshoot Kubernetes applications. 
 
----
