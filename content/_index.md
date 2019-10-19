@@ -9,4 +9,11 @@ title = "Tutorial: Debug Your Kubernetes Apps - Arun Gupta & Re Alvarez Parmar, 
 outputs = ["Reveal"]
 +++
 
-# Tutorial: Debug Your Kubernetes Apps - Arun Gupta & Re Alvarez Parmar, Amazon
+## Tutorial: Debug Your Kubernetes Apps - Arun Gupta & Re Alvarez Parmar, Amazon
+
+
+---
+
+In this presentation we will learn how to troubleshoot Kubernetes applications. 
+
+---
