@@ -2,7 +2,7 @@
 title = "Tutorial: Debug Your Kubernetes Apps - Arun Gupta & Re Alvarez Parmar, Amazon"
 outputs = ["Reveal"]
 [logo]
-src = "/images/github-logo.png"
+src = "images/github-logo.png"
 alt = "GitHub logo with Octocat"
 +++
 
