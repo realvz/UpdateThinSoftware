@@ -8,3 +8,5 @@ How to setup environment
 `
 npx hugo server
 `
+
+If using GitPod's custom DockerFile, you don't need to install Hugo. It is already built into the Docker image.
